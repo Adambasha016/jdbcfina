@@ -1,0 +1,14 @@
+package com.linked;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class UserDriver {
+	public   static Connection getTheConnection() throws Exception 
+	{
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/ linked", "root", "root");
+		return connection;
+}
+}
+

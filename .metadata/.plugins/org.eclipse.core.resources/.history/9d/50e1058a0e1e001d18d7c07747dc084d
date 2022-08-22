@@ -1,0 +1,41 @@
+package com.jsp.socialmedia;
+import java.sql.*;
+
+
+public class UserDriver {
+	public void saveUser(User user) throws Exception {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/social_media","root","root");
+		PreparedStatement ps= connection.prepareStatement("INSERT INTO USER(id ,name,email,password,mediaType,phonenumber) value(?,?,?,?,?,?)");
+		
+		
+	ps.setInt(1,user.getId());
+		ps.setString(2,user.getName());
+		ps.setString(3, user.getEmail());
+		ps.setString(4, user.getPassword());
+		ps.setString(5, user.getMediaType());
+		ps.setString(6,user.getPhonenumber());
+		ps.execute();
+		System.out.println("user inserted successfully");
+		ps.close();
+		connection.close();
+		
+		
+		
+	
+}
+
+
+	public static void main(String[] args) throws Exception {
+UserDriver driver= new UserDriver();
+User user = new User();
+user.setId(1);
+user.setName("Anitha");
+user.setEmail("Anitha@gmail.com");
+user.setPassword("Anitha123@");
+user.setMediaType("facebook");
+user.setPhonenumber("7859398349");
+driver.saveUser(user);
+}
+
+}

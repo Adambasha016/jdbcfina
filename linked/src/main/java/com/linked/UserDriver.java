@@ -1,0 +1,90 @@
+package com.linked;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+
+public class UserDriver {
+	public   static Connection getTheConnection() throws Exception 
+	{
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/ linked", "root", "root");
+		return connection;
+}
+
+
+public void saveUser(User user) throws Exception {
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/linked", "root", "root");
+	PreparedStatement ps = connection.prepareStatement("INSERT INTO USER(id ,name,email,password,mediaType,phonenumber) value(?,?,?,?,?,?)");
+
+	ps.setInt(1, user.getId());
+	ps.setString(2, user.getEmail());
+	ps.setString(3, user.getPassword());
+	ps.setLong(4, user.getPhonenumber());
+	ps.setDouble(5, user.getSscpercentage());
+	ps.setDouble(6, user.getIntermeditepercentage());
+	ps.setDouble(7,user.getGradutionpercentage());
+	ps.execute();
+	System.out.println("user inserted successfully");
+	ps.close();
+	connection.close();
+
+}
+
+public void updateUser(User user) throws Exception{
+	Connection connection = getTheConnection();
+	PreparedStatement ps= connection.prepareStatement("UPDATE USER SET name=?,email=?,password=?,mediaType=?,phonenumber=?,where id=?");
+	ps.setString(1, user.getEmail());
+	ps.setString(2,user.getPassword());
+	ps.setLong(3,user.getPhonenumber());
+	ps.setDouble(4,user.getSscpercentage());
+	ps.setDouble(5,user.getIntermeditepercentage());
+	ps.setDouble(6,user.getGradutionpercentage());
+	ps.setInt(7, user.getId());
+	ps.executeUpdate();
+	ps.close();
+	connection.close();
+}
+
+public void deleteUser(int id) throws Exception {
+	Connection connection = getTheConnection();
+	PreparedStatement ps = connection.prepareStatement("DELETE FROM User where id =?");
+	ps.setInt(1, id);
+	ps.execute();
+	ps.close();
+	connection.close();
+}
+
+
+ public void getAllUser()  throws Exception {
+	 Connection connection = getTheConnection();
+	 PreparedStatement ps = connection.prepareStatement("SELECT ' FROM USER");
+	 
+		ResultSet sets = ps.executeQuery();
+		while (sets.next()) {
+			System.out.println("user id is: "+sets.getInt(1));
+			System.out.println("user emailis : "+sets.getString(2));
+			System.out.println("user password is :"+sets .getDouble(3));
+			System.out.println("user phonenumber is :  "+sets .getLong(4));
+			System.out.println("user  sscpercentageis :"+sets.getDouble(5));
+			System.out.println("user intermeditepercentage is:"+sets.getDouble(6));
+			System.out.print("user Gradutionpercentage");		
+        ps.close();
+		connection.close();
+		}
+			
+			
+		}
+
+private Connection getTheConnection1() throws Exception {
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/social_media", "root", "root");
+	
+	
+	return connection ;
+}
+}
+

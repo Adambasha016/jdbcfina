@@ -1,0 +1,49 @@
+package com.jsp.socialmedia1;
+
+import java.util.Scanner;
+
+import com.jsp.socialmedia.User;
+import com.jsp.socialmedia.UserDriver;
+
+public class Usercontroller {
+
+	public static  void main(String[] args) {
+		
+    Scanner.sc = new Scanner(System.in );
+    UserDriver driver = new UserDriver();
+    boolean exist = true;
+     (exist){
+    	System.out.println("press 1 is save the user");
+    	System.out.println("press 2 is update the user");
+    	System.out.println("press 3 is delete the user");
+    	System.out.println("press 4 is get all  the user");
+    	System.out.println("press 5 to exist");
+    	int Choice = sc.nextInt();
+    	Switch (Choice) {
+    		case 1: {
+    			User user = new User();
+    			System.out.println("enter the id");
+    			user.setId(sc.next());
+    			
+    		}
+    		
+    	}
+    	
+    	
+    	
+    }
+    
+	}
+
+	private static void  (boolean exist) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void Switch(int choice) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+}

@@ -1,0 +1,62 @@
+package com.jsp.socialmedia;
+
+import java.sql.*;
+
+public class UserDriver {
+	 
+	
+	
+	
+	public void saveUser(User user) throws Exception {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/social_media", "root", "root");
+		PreparedStatement ps = connection.prepareStatement("INSERT INTO USER(id ,name,email,password,mediaType,phonenumber) value(?,?,?,?,?,?)");
+
+		ps.setInt(1, user.getId());
+		ps.setString(2, user.getName());
+		ps.setString(3, user.getEmail());
+		ps.setString(4, user.getPassword());
+		ps.setString(5, user.getMediaType());
+		ps.setString(6, user.getPhonenumber());
+		ps.execute();
+		System.out.println("user inserted successfully");
+		ps.close();
+		connection.close();
+
+	}
+	
+	public void updateUser(User user) throws Exception{
+		Connection connection = getTheConnection();
+		PreparedStatement ps= connection.prepareStatement("UPDATE USER SET name=?,email=?,password=?,mediaType=?,phonenumber=?,where id=?");
+		ps.setString(1, user.getName());
+		ps.setString(2,user.getEmail());
+		ps.setString(3,user.getPassword());
+		ps.setString(4,user.getMediaType());
+		ps.setString(5,user.getPhonenumber());
+		ps.setInt(6, user.getId());
+		ps.executeUpdate();
+		ps.close();
+		connection.close();
+	}
+	
+	
+
+	private Connection getTheConnection() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static void main(String[] args) throws Exception {
+		UserDriver driver = new UserDriver();
+		User user = new User();
+		user.setId(3);
+		user.setName("Anitha");
+		user.setEmail("Anitha@gmail.com");
+		user.setPassword("Anitha23@");
+		user.setMediaType("facebook");
+		user.setPhonenumber("78593983");
+		//driver.saveUser(user);
+		driver.updateUser(user);
+	}
+
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;SocialMedia/src/main/java/com/jsp/socialmedia/UserController.java&apos;" deleteContents="false" description="Delete resource &apos;SocialMedia/src/main/java/com/jsp/socialmedia/UserController.java&apos;" element1="/SocialMedia/src/main/java/com/jsp/socialmedia/UserController.java" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1660818658676"/>
+</session>
